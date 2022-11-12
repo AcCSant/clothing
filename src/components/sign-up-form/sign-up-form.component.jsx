@@ -6,6 +6,7 @@ import FormInput from "../form-input/form-input.component";
 
 import { createAuthUserWithEmailAndPassword, createUserDocumentFromAuth } from "../../utils/firebase/firebase.utils";
 
+
 import './sign-up-form.styles.scss'
 
 //created an object
@@ -23,8 +24,6 @@ const SignUpForm = () => {
     //destructuring the form values to use inside the code
     const {displayName, email, password, confirmPassword} = formFields;
 
-    console.log(formFields);
-
     const resetFormFields = () => {
         setFormFields(defaultFormFields);
     }
@@ -40,6 +39,7 @@ const SignUpForm = () => {
 
         try {
             const {user} = await createAuthUserWithEmailAndPassword(email, password);
+           
             await createUserDocumentFromAuth(user, {displayName} );
             resetFormFields();
         } catch(error) {

@@ -1,7 +1,9 @@
 import {initializeApp} from 'firebase/app';
 import {getAuth, signInWithRedirect, signInWithPopup, 
   GoogleAuthProvider, createUserWithEmailAndPassword,
-  signInWithEmailAndPassword
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged
 } from 'firebase/auth';
 
 import {    getFirestore, doc, getDoc, setDoc  
@@ -66,3 +68,9 @@ const firebaseConfig = {
     if(!email || !password) return;
     return await signInWithEmailAndPassword(auth, email, password);
   }
+  // will create another interface layer function to sign out
+
+  export const signOutUser = async () => await signOut(auth);
+
+  //this is just saying: call me whenever this callback is instantiated
+  export const onAuthStateChangedListener = (callback) => onAuthStateChanged(auth, callback);
