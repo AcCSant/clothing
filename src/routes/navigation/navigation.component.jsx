@@ -1,13 +1,19 @@
 import { Fragment, useContext } from 'react';
 import {Outlet, Link } from 'react-router-dom';
+
+import CartIcon from '../../contexts/cart-icon/cart-icon.component';
+import CartDropdown from '../../components/cart-dropdown/cart-dropdown.component';
+
 import { ReactComponent as CrwnLogo} from '../../assets/crown.svg';
 import './navigation.styles.scss';
 import { UserContext } from '../../contexts/user.context';
+import { CartContext, CartProvider } from '../../contexts/cart.context';
 import {signOutUser} from '../../utils/firebase/firebase.utils';
 
 
 const Navigation = () => {
   const { currentUser } = useContext(UserContext);
+  const {isCartOpen} = useContext(CartContext);
 
   // //This method is just to show the user that is sighned out - this was removed because there is a way to show it better
   // const signOutHandler = async () => {
@@ -32,11 +38,11 @@ const Navigation = () => {
                 : (<Link className='nav-link' to='/auth'>
                 {' '}
                 Sign In  {' '}
-            </Link>) 
-             
-            }
-            
+            </Link>            
+            )}        
+            <CartIcon />    
           </div>
+          {isCartOpen && <CartDropdown />}
         </div>
         <Outlet />
       </Fragment>

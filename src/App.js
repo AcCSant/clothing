@@ -3,17 +3,17 @@ import Navigation from './routes/navigation/navigation.component';
 import Authentication from './routes/authentication/authentication.component';
 
 import Home from './routes/home/home.component';
+import Shop from './routes/shop/shop.component';
 
 
-
-const Shop = () => {
-  return (
-    <h1> I am the shop page</h1>
-  );
-};
+//This was just used initially to render another page, but now we made the component
+// const Shop = () => {
+//   return (
+//     <h1> I am the shop page</h1>
+//   );
+// };
 
 const App = () => {
-
   return ( 
   <Routes>
     <Route path='/' element={<Navigation />}>
@@ -21,8 +21,6 @@ const App = () => {
       <Route path='shop' element={<Shop/>} />
       <Route path='auth' element={<Authentication/>} />
     </Route>
-    
-  
   </Routes>
    ); 
 };
